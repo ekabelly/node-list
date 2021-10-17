@@ -1,0 +1,6 @@
+<div class="node">
+  <div class="node-name">
+    {{node.name}}
+  </div>
+  <app-node *ngFor="let childNode of children" [node]="childNode"></app-node>
+</div>
