@@ -24,7 +24,7 @@ export const nodes: NodeItem[] = [
  *
  * response:
  *
- * @param token         {JWY}
+ * @param token         {JWT}
  * @param userId        {string}
  *
  *
