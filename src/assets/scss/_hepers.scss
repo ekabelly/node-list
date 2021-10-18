@@ -1,0 +1,158 @@
+// flex attributes
+
+.flex,
+.flex-column,
+.flex-row,
+.flex-end,
+.align-end,
+.space-between,
+.justify-center,
+.align-center {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+//positions
+
+.sticky-top,
+.sticky-right,
+.sticky-left {
+  position: sticky;
+}
+
+.sticky-right {
+  right: 0;
+}
+
+.sticky-left {
+  left: 0;
+}
+
+.sticky-top {
+  top: 0;
+}
+
+//
+.hidden {
+  transition: opacity .2s;
+  opacity: 0;
+}
+
+// if en element has .hidden class but also .not-hidden class, show it.
+.hidden.not-hidden,
+.not-hidden {
+  opacity: 1;
+}
+
+// width and height
+
+.fit-content {
+  width: fit-content;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.max-height-tran {
+  max-height: 0;
+  transition: max-height .2s ease;
+  overflow: auto;
+
+  // to open, use this class on the element:
+  //&.open {
+  //  max-height: `${height}px`;
+  //}
+}
+
+//transitions
+
+.transform-transition,
+*[class^="flip"] {
+  transition: transform .2s ease;
+}
+
+.flip-180 {
+  transform: rotate(180deg);
+}
+
+// cursor
+.cursor-move {
+  cursor: move;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+// positions
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

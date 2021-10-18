@@ -2,7 +2,7 @@ import {NodeItem, NodeTypes} from "../models/node-item";
 
 const schemaNodeItems: NodeItem[] = [
   {
-    id: '1',
+    id: '1333',
     name: 'first schema',
     type: NodeTypes.SCHEMA,
     children: [],
@@ -14,8 +14,8 @@ const schemaNodeItems: NodeItem[] = [
 
 const dbNodeItems: NodeItem[] = [
   {
-    id: '1',
-    name: 'first db conn',
+    id: '111',
+    name: 'first db',
     type: NodeTypes.DB,
     children: [
       schemaNodeItems[0]
@@ -25,7 +25,7 @@ const dbNodeItems: NodeItem[] = [
     hasChildren: true
   },
   {
-    id: '1',
+    id: '12',
     name: 'second db',
     type: NodeTypes.DB,
     children: [
@@ -35,7 +35,7 @@ const dbNodeItems: NodeItem[] = [
     allowedUsers: ['1', '2', '6'],
     hasChildren: true
   },{
-    id: '1',
+    id: '11',
     name: 'first db',
     type: NodeTypes.DB,
     children: [
@@ -44,7 +44,7 @@ const dbNodeItems: NodeItem[] = [
     allowedUsers: ['1', '2', '6'],
     hasChildren: true
   },{
-    id: '1',
+    id: '13',
     name: 'third db',
     type: NodeTypes.DB,
     children: [
@@ -66,6 +66,30 @@ const dbCOnnNodes: NodeItem[] = [
     ],
     isRoot: true,
     allowedUsers: ['1', '2', '6'],
+    hasChildren: true
+  },
+  {
+    id: '2',
+    name: 'second db conn',
+    type: NodeTypes.DB_CONN,
+    children: [
+      dbNodeItems[2],
+      dbNodeItems[3],
+    ],
+    isRoot: true,
+    allowedUsers: ['1', '6'],
+    hasChildren: true
+  },
+  {
+    id: '3',
+    name: 'third db conn',
+    type: NodeTypes.DB_CONN,
+    children: [
+      dbNodeItems[4],
+      dbNodeItems[5],
+    ],
+    isRoot: true,
+    allowedUsers: ['1', '6'],
     hasChildren: true
   }
 ];

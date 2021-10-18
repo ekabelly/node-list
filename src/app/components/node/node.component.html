@@ -1,6 +1,9 @@
 <div class="node">
-  <div class="node-name">
-    {{node.name}}
+  <div class="flex align-center">
+    <img src="assets/icons/{{node.type}}.png" alt="">
+    <div class="node-name">
+      {{node.name}}
+    </div>
   </div>
   <app-node *ngFor="let childNode of children" [node]="childNode"></app-node>
 </div>
