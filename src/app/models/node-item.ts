@@ -8,14 +8,12 @@ export enum NodeTypes {
   COLUMN
 }
 
-export interface BaseNodeItem {
+export interface NodeItem {
   id: string;
   name: string;
-}
-
-export interface NodeItem extends BaseNodeItem{
+  hasChildren: boolean;
   allowedUsers: UserId[];
-  children?: BaseNodeItem[]
+  children?: NodeItem[] | string[];
   type: NodeTypes;
   isRoot: boolean;
 }

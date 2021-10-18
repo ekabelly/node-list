@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {BaseNodeItem, NodeItem} from "../../models/node-item";
+import {NodeItem} from "../../models/node-item";
 
 @Component({
   selector: 'app-node',
@@ -8,16 +8,18 @@ import {BaseNodeItem, NodeItem} from "../../models/node-item";
 })
 export class NodeComponent {
 
-  private _node: NodeItem | BaseNodeItem;
+  private _node: NodeItem;
 
-  public children: (NodeItem | BaseNodeItem)[];
+  public children: NodeItem[];
 
-  @Input() set node(node: NodeItem | BaseNodeItem) {
+  @Input() set node(node: NodeItem) {
     this._node = node;
-    this.children = (node as NodeItem).children || [];
+    if (node.children && typeof node.children[0] === 'string') {
+      this.children = (node.children as NodeItem[]) || [];
+    }
   }
 
-  get node(): NodeItem | BaseNodeItem {
+  get node(): NodeItem {
     return this._node;
   }
 }
