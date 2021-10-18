@@ -41,7 +41,7 @@ const dbNodeItems: NodeItem[] = [
     children: [
     ],
     isRoot: false,
-    allowedUsers: ['1', '2', '6'],
+    allowedUsers: ['3'],
     hasChildren: true
   },{
     id: '13',
@@ -85,8 +85,6 @@ const dbCOnnNodes: NodeItem[] = [
     name: 'third db conn',
     type: NodeTypes.DB_CONN,
     children: [
-      dbNodeItems[4],
-      dbNodeItems[5],
     ],
     isRoot: true,
     allowedUsers: ['1', '6'],

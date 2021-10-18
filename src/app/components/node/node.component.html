@@ -1,9 +1,19 @@
-<div class="node">
-  <div class="flex align-center">
+<div class="node" *ngIf="node && userService.user$ | async as user">
+  <div class="flex align-center" (click)="toggleNodeOpen()">
     <img src="assets/icons/{{node.type}}.png" alt="">
-    <div class="node-name">
+    <div
+      class="node-name"
+      [ngClass]="{ disabled: !node.allowedUsers.includes(user.id), 'has-children': node.children?.length > 0 }"
+    >
       {{node.name}}
     </div>
+    <img *ngIf="node.children?.length > 0" class="arrow" [ngClass]="{ open: !isLoading && isOpen }" src="assets/icons/arrow.png" alt="">
   </div>
-  <app-node *ngFor="let childNode of children" [node]="childNode"></app-node>
+  <div class="nodes-wrapper" [ngClass]="{ open: !isLoading && isOpen }">
+    <app-node
+      *ngFor="let childNode of children"
+      [isAllowed]="node.allowedUsers.includes(user.id)"
+      [node]="childNode"
+    ></app-node>
+  </div>
 </div>

@@ -6,5 +6,40 @@ $margin: 20px;
     width: 15px;
     height: 15px;
     margin: 5px;
+
+    &.arrow {
+      width: 7px;
+      height: 7px;
+      transition: transform .2s;
+      transform: rotate(90deg);
+
+      &.open {
+
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .node-name {
+
+    &.has-children {
+      cursor: pointer;
+    }
+
+    &.disabled {
+      color: darkgrey;
+      cursor: not-allowed;
+    }
+  }
+
+  .nodes-wrapper {
+    transition: max-height .2s;
+    max-height: 0;
+    overflow: hidden;
+
+    &.open {
+      max-height: 300px;
+      overflow: auto;
+    }
   }
 }
