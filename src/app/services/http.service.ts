@@ -19,7 +19,9 @@ export class HttpService {
   public fetchRootNodes(): Observable<NodeItem[]> {
     return new Observable(sub => {
       setTimeout(() => {
-        sub.next(nodes.filter(node => node.isRoot))
+        const nodeList = nodes;
+        console.log(nodeList);
+        sub.next(nodeList.filter(node => node.isRoot))
       }, 500);
     })
   }

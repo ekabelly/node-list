@@ -1,0 +1,12 @@
+@import "~src/assets/scss/index";
+
+.node-list-wrapper {
+  max-height: calc(100vh - #{$header-margin-top + $header-margin-bot + $header-height});
+  overflow: auto;
+  // puts the scroll on the left side
+  direction: rtl;
+}
+
+.node-list {
+  direction: ltr;
+}

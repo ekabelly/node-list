@@ -1,4 +1,19 @@
 <div class="app">
   <app-header></app-header>
-  <app-root-nodes-list [nodes]="rootNodes$ | async"></app-root-nodes-list>
+  <div class="flex space-between">
+    <app-root-nodes-list [nodes]="rootNodes$ | async"></app-root-nodes-list>
+    <div class="user-selection">
+      <h4>
+        select a user
+      </h4>
+
+      <select
+        (change)="userService.user = {id: $event.target.value}"
+      >
+        <option *ngFor="let userId of userService.users">
+          {{userId}}
+        </option>
+      </select>
+    </div>
+  </div>
 </div>

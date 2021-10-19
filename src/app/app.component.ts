@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NodesService} from "./services/nodes.service";
 import {Observable} from "rxjs";
 import {NodeItem} from "./models/node-item";
+import {UserService} from "./services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,10 @@ import {NodeItem} from "./models/node-item";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private nodesService: NodesService) {
+  constructor(private nodesService: NodesService, public userService: UserService) {
   }
 
-  rootNodes$: Observable<NodeItem[]>;
+  public rootNodes$: Observable<NodeItem[]>;
 
   ngOnInit() {
     this.rootNodes$ = this.nodesService.fetchParentNodes();

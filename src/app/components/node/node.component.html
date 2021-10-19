@@ -1,9 +1,10 @@
-<div class="node" *ngIf="node && userService.user$ | async as user">
+<div class="node" *ngIf="node">
   <div class="flex align-center" (click)="toggleNodeOpen()">
-    <img src="assets/icons/{{node.type}}.png" alt="">
+    <img src="assets/icons/{{node.type}}.png" *ngIf="!isLoading" alt="">
+    <img *ngIf="isLoading" src="assets/images/loader.gif">
     <div
       class="node-name"
-      [ngClass]="{ disabled: !node.allowedUsers.includes(user.id), 'has-children': node.children?.length > 0 }"
+      [ngClass]="{ disabled: !node.allowedUsers.includes(currentUserId), 'has-children': node.children?.length > 0 }"
     >
       {{node.name}}
     </div>
@@ -11,8 +12,9 @@
   </div>
   <div class="nodes-wrapper" [ngClass]="{ open: !isLoading && isOpen }">
     <app-node
+      [closeChild]="closeChildren"
+      [currentUserId]="currentUserId"
       *ngFor="let childNode of children"
-      [isAllowed]="node.allowedUsers.includes(user.id)"
       [node]="childNode"
     ></app-node>
   </div>

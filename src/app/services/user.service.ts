@@ -11,6 +11,7 @@ export class UserService {
   }
 
   private _user$ = new BehaviorSubject<User>({id: '1'});
+  public users = ['1','2','3','4','5','6','7','8'];
 
   set user(user: User) {
     if (user) {
