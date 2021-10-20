@@ -1,7 +1,6 @@
 import {NodeItem, NodeTypes} from "../models/node-item";
 import {UserId} from "../models/User";
 import {randomNum, randomStr} from "../util/app-util";
-import dbConnNodeList from './db-conn.mock';
 
 const nodeItemToChild = (nodeItem: NodeItem) => ({
   ...nodeItem,
@@ -105,21 +104,60 @@ const dbCOnnNodes: NodeItem[] = [
   }
 ];
 
+const nodesMap: Record<NodeTypes, NodeItem[]> = {
+  [NodeTypes.DB_CONN]: [],
+  [NodeTypes.DB]: [],
+  [NodeTypes.SCHEMA]: [],
+  [NodeTypes.TABLE]: [],
+  [NodeTypes.COLUMN]: []
+}
+
+const nodeTypeOrder = [NodeTypes.DB_CONN, NodeTypes.DB, NodeTypes.SCHEMA, NodeTypes.TABLE, NodeTypes.COLUMN];
+
+const ids = new Map<string, boolean>();
+
+
+const fillNodeWithChildren = (nodesList: NodeItem[], nodeChildrenType: NodeTypes, nodeTypeIndex: number): NodeItem[] => {
+  return nodesList.map(node => {
+    if (node.hasChildren) {
+      const children = createStubNodes(nodeChildrenType);
+      node.children = Number(nodeTypeIndex) % 2 === 0 ? children : children.map(childNode => childNode.id)
+      nodesMap[nodeChildrenType] = nodeChildrenType === NodeTypes.COLUMN ?
+        children : fillNodeWithChildren(children, nodeTypeOrder[Number(nodeChildrenType) - 1], nodeTypeIndex + 1);
+    }
+    return node;
+  });
+}
+
+const createNodeCollection = (): NodeItem[] => {
+  let res: NodeItem[] = []
+  nodesMap[nodeTypeOrder[0]] = fillNodeWithChildren(
+    createStubNodes(nodeTypeOrder[0]),
+    nodeTypeOrder[Number(0) + 1],
+    0
+  );
+  for (const nodesOfType of Object.values(nodesMap)) {
+    res = [...res, ...nodesOfType];
+  }
+  return res;
+}
+
 export const nodes: NodeItem[] = [
-  ...dbCOnnNodes,
-  ...dbConnNodeList as NodeItem[],
-  ...dbNodeItems,
-  ...schemaNodeItems
+  // ...dbCOnnNodes,
+  // ...dbConnNodeList as NodeItem[],
+  // ...dbNodeItems,
+  // ...schemaNodeItems,
+  // ...createStubNodes(NodeTypes.DB_CONN)
+  ...createNodeCollection()
 ]
 
 function createStubNodes(nodeType: NodeTypes): NodeItem[] {
-  const ids = new Map<string, boolean>();
-  const hasChildren = Math.random() > 0.5;
+  const hasChildren = Math.random() > 0.3;
   const res = new Array(randomNum()).fill(null).map(() => ({
     id: randomStr(ids),
-    name: randomStr(),
+    name: `${nodeType}_${randomStr()}`,
     hasChildren,
-    allowedUsers: [],
+    allowedUsers: ['1'],
     children: [],
     type: nodeType,
     isRoot: nodeType === NodeTypes.DB_CONN

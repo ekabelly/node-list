@@ -4,7 +4,7 @@
     <img *ngIf="isLoading" src="assets/images/loader.gif">
     <div
       class="node-name"
-      [ngClass]="{ disabled: !node.allowedUsers.includes(currentUserId), 'has-children': node.children?.length > 0 }"
+      [ngClass]="{ disabled: !node.allowedUsers?.includes(currentUserId), 'has-children': node.children?.length > 0 }"
     >
       {{node.name}}
     </div>
