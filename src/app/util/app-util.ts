@@ -1,5 +1,5 @@
 
-export const randomNum = (min: number = 100, max: number = 2000) => Math.floor(Math.random() * (max - min) + min);
+export const randomNum = (min: number = 1, max: number = 10) => Math.floor(Math.random() * (max - min) + min);
 
 export const randomStr = (existingCollection?: Map<string, boolean>, max: number = 9): string => {
   let result = '';

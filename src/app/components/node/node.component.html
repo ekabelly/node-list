@@ -4,11 +4,11 @@
     <img *ngIf="isLoading" src="assets/images/loader.gif">
     <div
       class="node-name"
-      [ngClass]="{ disabled: !node.allowedUsers?.includes(currentUserId), 'has-children': node.children?.length > 0 }"
+      [ngClass]="{ disabled: !node.allowedUsers?.includes(currentUserId), 'has-children': node.hasChildren }"
     >
       {{node.name}}
     </div>
-    <img *ngIf="node.children?.length > 0" class="arrow" [ngClass]="{ open: !isLoading && isOpen }" src="assets/icons/arrow.png" alt="">
+    <img *ngIf="node.hasChildren" class="arrow" [ngClass]="{ open: !isLoading && isOpen }" src="assets/icons/arrow.png" alt="">
   </div>
   <div class="nodes-wrapper" [ngClass]="{ open: !isLoading && isOpen }">
     <app-node

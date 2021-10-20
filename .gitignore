@@ -43,3 +43,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# mocks
+/src/app/mocks/node-list.mock.json

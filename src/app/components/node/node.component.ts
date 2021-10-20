@@ -33,7 +33,6 @@ export class NodeComponent {
   @Input() set node(node: NodeItem) {
     if (node) {
       this._node = node;
-      // console.log({node})
       if (node.children && typeof node.children[0] !== 'string') {
         this.children = (node.children as NodeItem[]) || [];
       }
@@ -59,7 +58,7 @@ export class NodeComponent {
       !this.isOpen && !this.isLoading &&
       this.node.allowedUsers.includes(this.currentUserId);
     if (this.isOpen || isAllowedToOpen) {
-      if (!this.children) {
+      if (!this.children || this.children.length < 1) {
         this.children = (await this.fetchNodeChildren()).children as NodeItem[];
       }
       this.toggleOpen(!this.isOpen);

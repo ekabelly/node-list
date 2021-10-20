@@ -34,13 +34,11 @@ $margin: 20px;
   }
 
   .nodes-wrapper {
-    transition: max-height .2s;
     max-height: 0;
     overflow: hidden;
 
     &.open {
-      max-height: 300px;
-      overflow: auto;
+      max-height: none;
     }
   }
 }
