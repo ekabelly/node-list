@@ -1,5 +1,8 @@
 <div class="node-list-wrapper">
   <div class="node-list">
-    <app-node *ngFor="let node of nodes" [node]="node" [currentUserId]="(userService.user$ | async).id"></app-node>
+    <app-node
+      *ngFor="let node of nodes" [node]="node"
+      [currentUserId]="(userService.user$ | async).id"
+    ></app-node>
   </div>
 </div>

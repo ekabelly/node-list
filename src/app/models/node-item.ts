@@ -17,3 +17,5 @@ export interface NodeItem {
   type: NodeTypes;
   isRoot: boolean;
 }
+
+export const nodeTypeOrder = [NodeTypes.DB_CONN, NodeTypes.DB, NodeTypes.SCHEMA, NodeTypes.TABLE, NodeTypes.COLUMN];

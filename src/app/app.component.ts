@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private nodesService: NodesService, public userService: UserService) {
   }
 
-  public rootNodes$: Observable<NodeItem[]>;
+  public rootNodes$: Promise<NodeItem[]>;
 
   ngOnInit() {
     this.rootNodes$ = this.nodesService.fetchParentNodes();
