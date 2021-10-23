@@ -1,7 +1,9 @@
 const fs = require('fs');
 
+// deep clone any value
+const deepClone = val => JSON.parse(JSON.stringify(val));
 
-const randomNum = (min = 1, max = 30, biggerNumbers = true) => {
+const randomNum = (min = 1, max = 3, biggerNumbers = true) => {
   if (biggerNumbers) {
     max = Math.random() > 0.995 ? Math.ceil(Math.random() * 100) : max;
   }
@@ -52,10 +54,10 @@ const fillNodeWithChildren = (nodesList, nodeChildrenType, nodeTypeIndex) => {
           ...children
         ];
       } else {
-        const childrenNodeType = nodeTypeOrder[nodeTypeIndex + 2];
+        const grandchildrenNodeType = nodeTypeOrder[nodeTypeIndex + 2];
         nodesKeyVal[nodeChildrenType] = [
           ...nodesKeyVal[nodeChildrenType],
-          ...fillNodeWithChildren(JSON.parse(JSON.stringify(children)), childrenNodeType, nodeTypeIndex + 1)
+          ...fillNodeWithChildren(deepClone(children), grandchildrenNodeType, nodeTypeIndex + 1)
         ];
       }
     }
@@ -75,19 +77,18 @@ const createNodeCollection = () => {
 function getAndCreateRootsNodes() {
 
   fs.writeFile('./node-list.mock.json', JSON.stringify({
-    rootNodes: createNodeCollection(), nodeList: createNodeListFromKeyValueObj()
-  }), console.log)
+    rootNodes: createNodeCollection(), nodeObject: createNodeListFromKeyValueObj()
+  }), () => console.log('created nodes mock'));
 }
 
 function createNodeListFromKeyValueObj() {
-  let nodeList = [];
+  let nodeObject = {};
   for (const nodeType of Object.keys(nodesKeyVal)) {
-    nodeList = [
-      ...nodeList,
-      ...nodesKeyVal[nodeType]
-    ]
+    for (const nodeItem of nodesKeyVal[nodeType]) {
+      nodeObject[nodeItem.id] = nodeItem;
+    }
   }
-  return nodeList;
+  return nodeObject;
 }
 
 function createStubNodes(nodeType) {

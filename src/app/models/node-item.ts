@@ -1,4 +1,4 @@
-import { UserId } from "./User";
+import { UserId } from "./user";
 
 export enum NodeTypes {
   DB_CONN = 'DB_CONN',

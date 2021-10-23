@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NodeComponent } from './components/node/node.component';
 import { NodeListComponent } from './components/node-list/node-list.component';
 import { HeaderComponent } from './components/header/header.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
     HeaderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
